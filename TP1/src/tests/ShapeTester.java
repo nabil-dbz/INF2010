@@ -42,6 +42,8 @@ public final class ShapeTester {
         list.add(new Point2d(rawVector[0][0], rawVector[0][1]));
         BaseShape output = new BaseShape(list).translate(new Point2d(rawTranslate[0][0], rawTranslate[0][1]));
         Point2d point = output.getCoords().iterator().next();
+        //System.out.println(output.getCoords().size());
+        //System.out.println(point.Y());
         return Tester.isEqual(correctOutput, new Double[] { point.X(), point.Y() }) ? value : 0.0;
     }
 

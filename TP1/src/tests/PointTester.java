@@ -120,6 +120,7 @@ public final class PointTester {
         SimpleMatrix rotate = new SimpleMatrix(Tester.toPromitive(rawRotate));
         SimpleMatrix correctOutput = rotate.mult(vector.transpose()).transpose();
         Point2d output = new Point2d(rawVector[0]).rotate(Math.toRadians(90));
+        //System.out.println(correctOutput. + correctOutput.Y());
         return Tester.isEqual(correctOutput, new Double[] {output.X(), output.Y()}) ? value : 0.0;
     }
 

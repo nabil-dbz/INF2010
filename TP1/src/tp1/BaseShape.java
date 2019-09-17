@@ -10,61 +10,69 @@ public class BaseShape {
 
     // TODO Initialiser les points.
     public BaseShape() {
-        // ...
+        this.coords = new HashSet<>();
     }
 
     // TODO prendre une liste de points et creer une nouvelle forme.
     public BaseShape(Collection<Point2d> coords) {
-        // ...
+        this.coords = new HashSet<>(coords);
     }
 
     // TODO ajouter ou retirer des coordonnees a la liste de points.
     public void add(Point2d coord) {
-        // ...
+        this.coords.add(coord);
     }
     public void add(BaseShape shape) {
-        // ...
+        this.coords.addAll(shape.getCoords());
     }
     public void addAll(Collection<Point2d> coords) {
-        // ...
+        this.coords.addAll(coords);
     }
     public void remove(Point2d coord) {
-        // ...
+        this.coords.remove(coord);
     }
     public void remove(BaseShape shape) {
-        // ...
+        this.coords.removeAll(shape.getCoords());
     }
     public void removeAll(Collection<Point2d> coords) {
-        // ...
+        this.coords.removeAll(coords);
     }
 
     // TODO retourne les coordonnees de la liste.
     public Set<Point2d> getCoords() {
-        return null;
+        return new HashSet<>(this.coords);
     }
 
     // TODO appliquer la translation sur la forme.
     public BaseShape translate(Point2d point) {
-        return null;
+        Set<Point2d> coords = new HashSet<>();
+        this.coords.stream().forEach(pointTranslate -> {coords.add(pointTranslate.translate(point));});
+        return new BaseShape(coords);
     }
 
     // TODO appliquer la translation sur la liste.
     public Set<Point2d> translateAll(Point2d point) {
-        return null;
+        Set<Point2d> coords = new HashSet<>();
+        this.coords.stream().forEach(pointTranslate -> {coords.add(pointTranslate.translate(point));});
+        return coords;
     }
 
     // TODO appliquer la rotation sur la forme.
     public BaseShape rotate(Double angle) {
-        return null;
+        Set<Point2d> coords = new HashSet<>();
+        this.coords.stream().forEach(pointTranslate -> {coords.add(pointTranslate.rotate(angle));});
+        return new BaseShape(coords);
     }
 
     // TODO appliquer la rotation sur la liste.
     public Set<Point2d> rotateAll(Double angle) {
-        return null;
+        Set<Point2d> coords = new HashSet<>();
+        this.coords.stream().forEach(pointTranslate -> {coords.add(pointTranslate.rotate(angle));});
+        return coords;
     }
 
     // TODO retourner une nouvelle forme.
     public BaseShape clone() {
-        return this;
+        return new BaseShape(this.coords);
     }
 }

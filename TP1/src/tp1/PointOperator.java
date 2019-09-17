@@ -66,6 +66,7 @@ public final class PointOperator {
 
         Double xMax = 0.0;
         Double yMax = 0.0;
+
         for(Point2d point: coords) {
             if (point.X() > xMax) xMax = point.X();
             if (point.Y() > yMax) yMax = point.Y();
@@ -77,7 +78,7 @@ public final class PointOperator {
 
     // TODO retourne la coordonnee avec les plus petites valeurs en X et en Y.
     public static Point2d getMinCoord(Collection<Point2d> coords) {
-        System.out.println(0.0);
+
         Double xMin = new Double(((Point2d)coords.iterator().next()).X());
         Double yMin = new Double(((Point2d)coords.iterator().next()).Y());
 
