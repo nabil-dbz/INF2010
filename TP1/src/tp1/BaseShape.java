@@ -45,9 +45,7 @@ public class BaseShape {
 
     // TODO appliquer la translation sur la forme.
     public BaseShape translate(Point2d point) {
-        Set<Point2d> coords = new HashSet<>();
-        this.coords.stream().forEach(pointTranslate -> {coords.add(pointTranslate.translate(point));});
-        return new BaseShape(coords);
+        return new BaseShape(translateAll(point));
     }
 
     // TODO appliquer la translation sur la liste.
@@ -59,9 +57,7 @@ public class BaseShape {
 
     // TODO appliquer la rotation sur la forme.
     public BaseShape rotate(Double angle) {
-        Set<Point2d> coords = new HashSet<>();
-        this.coords.stream().forEach(pointTranslate -> {coords.add(pointTranslate.rotate(angle));});
-        return new BaseShape(coords);
+        return new BaseShape(rotateAll(angle));
     }
 
     // TODO appliquer la rotation sur la liste.

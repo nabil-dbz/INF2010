@@ -7,13 +7,11 @@ import java.util.Set;
 public class Ellipse extends BaseShape {
     // TODO creer une ellipse avec une largeur et une longueur.
     public Ellipse(Double widthRadius, Double heightRadius) {
-        super(new Set<Point2d>(new Point2d(new Double(-0.5 * widthRadius), new Double(0))) {
-        });
-        Set<Point2d> coords = new HashSet<>();
-        coords.add(new Point2d(new Double(-0.5 * widthRadius), new Double(0)));
-        coords.add(new Point2d(new Double(+0.5 * widthRadius), new Double(0)));
-                new Point2d(new Double(0), new Double(-0.5 * heightRadius)),
-                new Point2d(new Double(0), new Double(+0.5 * heightRadius)));
+        super();
+        for (double angle = 0; angle <= 360; angle += 0.1) {
+            add(new Point2d(new Double(widthRadius * Math.cos(Math.toRadians(angle))),
+                    new Double(heightRadius * Math.sin(Math.toRadians(angle)))));
+        }
     }
 
     private Ellipse(Set<Point2d> coords) {

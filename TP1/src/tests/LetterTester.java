@@ -17,6 +17,7 @@ public class LetterTester {
 
     private static Double all(Double value) {
         Tesseract tesseract = new Tesseract();
+        tesseract.setDatapath("./tessdata/");
         LetterPlacer letterPlacer = new LetterPlacer();
         try {
             letterPlacer.placeNext('H');
@@ -32,6 +33,7 @@ public class LetterTester {
             letterPlacer.saveImage("all", true);
             String output = tesseract.doOCR(new File("all.jpg"))
                     .replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+            //System.out.println(output);
             String input = "helloworld";
             return findMatchingChars(output, input).doubleValue();
         } catch (Exception e) {
