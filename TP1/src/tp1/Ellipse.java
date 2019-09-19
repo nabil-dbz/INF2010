@@ -4,6 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+* This class provides an Ellipse object
+* @author Nabil Dabouz and Andrew Al-Romhein
+* @version 19/09/2019
+**/
+
 public class Ellipse extends BaseShape {
     // TODO creer une ellipse avec une largeur et une longueur.
     public Ellipse(Double widthRadius, Double heightRadius) {

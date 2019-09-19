@@ -3,6 +3,13 @@ package tp1;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+* This class provides a Base Shape object
+* @author Nabil Dabouz and Andrew Al-Romhein
+* @version 19/09/2019
+**/
+
+
 public class BaseShape {
     // Vous aller apprendre plus en details le fonctionnement d'un Set lors
     // du cours sur les fonctions de hashage, vous pouvez considerez ceci comme une liste normale.

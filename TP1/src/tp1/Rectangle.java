@@ -3,6 +3,12 @@ package tp1;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+* This class provides a Rectangle object
+* @author Nabil Dabouz and Andrew Al-Romhein
+* @version 19/09/2019
+**/
+
 public class Rectangle extends BaseShape {
     // TODO creer un rectangle avec une largeur et une longueur.
     public Rectangle(Double width, Double height) {

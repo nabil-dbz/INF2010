@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+* This class provides a Letter Placer object
+* @author Nabil Dabouz and Andrew Al-Romhein
+* @version 19/09/2019
+**/
+
 public class LetterPlacer {
     private final static Integer enlargeFactor = 3;
     private final static Double padding = 20.0;

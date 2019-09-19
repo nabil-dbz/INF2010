@@ -3,6 +3,12 @@ package tp1;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+* This class provides an Abstract Point object
+* @author Nabil Dabouz and Andrew Al-Romhein
+* @version 19/09/2019
+**/
+
 public abstract class AbstractPoint {
     protected Double[] vector;
 

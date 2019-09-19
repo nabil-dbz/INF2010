@@ -1,5 +1,11 @@
 package tp1;
 
+/**
+* This class provides a Point 2d object
+* @author Nabil Dabouz and Andrew Al-Romhein
+* @version 19/09/2019
+**/
+
 public class Point2d extends AbstractPoint {
     private final Integer X = 0;
     private final Integer Y = 1;

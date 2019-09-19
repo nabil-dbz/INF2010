@@ -2,6 +2,12 @@ package tp1;
 
 import java.util.*;
 
+/**
+* This class provides a Point Operator object
+* @author Nabil Dabouz and Andrew Al-Romhein
+* @version 19/09/2019
+**/
+
 public final class PointOperator {
 
     public static Double[] translate(Double[] vector, Double[] translateVector) {
