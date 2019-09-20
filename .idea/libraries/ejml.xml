@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="ejml">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-fdense-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-cdense-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-core-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-zdense-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-core-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-experimental-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-zdense-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-experimental-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-dsparse-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-cdense-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-ddense-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-simple-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-simple-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-fdense-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-dsparse-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/ejml/ejml-ddense-0.38.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

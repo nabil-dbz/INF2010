@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="ejml1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-experimental-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-zdense-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-zdense-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-simple-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-cdense-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-core-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-experimental-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-dsparse-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-core-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-ddense-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-simple-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-fdense-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-fdense-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-ddense-0.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-dsparse-0.38-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TP1/out/production/corrige/ejml/ejml-cdense-0.38-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
