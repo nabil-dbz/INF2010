@@ -69,10 +69,8 @@ public class InterviewTester {
 
         Collection<MatchingPair> matchingPairs = myInterview.matchingPairs(values, 10);
         if (matchingPairs == null) return false;
-
         int combinationCount = (int)Math.pow(n,2);
         boolean containsAllCombinations = matchingPairs.size() == combinationCount;
-
         MatchingPair onlyGoodPair = new MatchingPair(value1,value2);
         matchingPairs.removeIf((matchingPair) -> matchingPair.equals(onlyGoodPair));
         boolean containsOnlyGoodPairs = matchingPairs.isEmpty();

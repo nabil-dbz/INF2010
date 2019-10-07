@@ -39,11 +39,25 @@ public class LinkedHashMap<KeyType, DataType> {
      * reassigns all contained values within the new map
      */
     private void rehash() {
+        //Node<KeyType, DataType>[] newMap = new Node[this.capacity * CAPACITY_INCREASE_FACTOR];
+        Node<KeyType, DataType>[] oldMap = map;
+        this.capacity *= CAPACITY_INCREASE_FACTOR;
+        this.map = new Node[this.capacity];
+        this.size = 0;
+        for (int i = 0; i < oldMap.length; i++) {
+            Node<KeyType, DataType> element = oldMap[i];
+            while (element != null) {
+                put(element.key, element.data);
+                element = element.next;
+            }
+        }
     }
 
     private void addNode(Node<KeyType, DataType> newNode) {
+        if (shouldRehash())
+            rehash();
         newNode.next = map[getIndex(newNode.key)];
-        map[getIndex(newNode.key)] = new Node<KeyType, DataType>(newNode.key, newNode.data);
+        map[getIndex(newNode.key)] = newNode;
         size++;
     }
 
@@ -66,18 +80,16 @@ public class LinkedHashMap<KeyType, DataType> {
      */
     public boolean containsKey(KeyType key) {
         Node<KeyType, DataType> element = map[getIndex(key)];
-        while((element != null) && (element.next != null) && (element.key != key)){
+        while((element != null) && (element.next != null) && !element.key.equals(key)){
             element = element.next;
         }
         if (element == null){
             return false;
         }
-        else if (element.key == key) {
+        if (element.key.equals(key)) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     /** TODO
@@ -115,14 +127,14 @@ public class LinkedHashMap<KeyType, DataType> {
         if (element == null) {
             addNode(new Node(key, value));
             return null;
-        } else if (element.key.equals(key)) {
+        }
+        if (element.key.equals(key)) {
             DataType retour = element.data;
             element.data = value;
             return retour;
-        } else {
-            addNode(new Node(key, value));
-            return null;
         }
+        addNode(new Node(key, value));
+        return null;
     }
 
     /** TODO
@@ -157,7 +169,8 @@ public class LinkedHashMap<KeyType, DataType> {
      * Removes all nodes contained within the map
      */
     public void clear() {
-
+        for(int i = 0; i < map.length; i++)
+            map[i] = null;
     }
 
 

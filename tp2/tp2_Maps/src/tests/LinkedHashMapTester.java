@@ -2,6 +2,8 @@ package tests;
 
 import tp2.LinkedHashMap;
 
+import java.awt.*;
+
 public class LinkedHashMapTester {
     public static Double start (){
         double total = 0;
@@ -88,7 +90,6 @@ public class LinkedHashMapTester {
     public static boolean collisionsAreHandled(){
         LinkedHashMap<KeyMock, Integer> map = new LinkedHashMap<KeyMock, Integer>();
 
-        System.out.println("Coucou");
         int n = 9;
         for (int i = 0; i < n ; ++i){
             String index = String.valueOf(i);
@@ -191,11 +192,17 @@ public class LinkedHashMapTester {
             String index = String.valueOf(i);
             map.put("myKey" + index, i);
         }
+        /*for (int i = 0; i < n ; ++i){
+            String index = String.valueOf(i);
+            System.out.println( map.get("myKey" + index));
+
+        }*/
 
         boolean rehashWorks = true;
         for (int i = 0; i <  n && rehashWorks; ++i){
             String index = String.valueOf(i);
             Integer value = map.get("myKey" + index);
+
             rehashWorks = value != null ? map.get("myKey" + index) == i : false;
         }
 
