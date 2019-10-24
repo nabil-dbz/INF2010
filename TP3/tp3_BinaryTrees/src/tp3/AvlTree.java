@@ -1,5 +1,7 @@
 package tp3;
 
+import com.sun.jdi.Value;
+
 import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.List;
@@ -152,7 +154,7 @@ public class AvlTree<ValueType extends Comparable<? super ValueType> > {
         else
             root = (currentNode.left != null) ? currentNode.left : currentNode.right;
 
-        balance(currentNode);
+        balance(root);
         return true;
     }
 
@@ -161,6 +163,19 @@ public class AvlTree<ValueType extends Comparable<? super ValueType> > {
      * @param subTree SubTree currently being accessed to verify if it respects the AVL balancing rule
      */
     private void balance(BinaryNode<ValueType> subTree) {
+        if (subTree != null) {
+            boolean shouldRotateRight = getLevelCount(subTree.left) - getLevelCount(subTree.right) < -1;
+            boolean shouldRotateLeft = getLevelCount(subTree.left) - getLevelCount(subTree.right) > 1;
+            while ((shouldRotateLeft || shouldRotateRight) && (subTree != null)) {
+                if (shouldRotateLeft)
+                    rotateLeft(subTree);
+                else if(shouldRotateRight)
+                    rotateRight(subTree);
+                shouldRotateRight = getLevelCount(subTree.left) - getLevelCount(subTree.right) < -1;
+                shouldRotateLeft = getLevelCount(subTree.left) - getLevelCount(subTree.right) > 1;
+                subTree = subTree.parent;
+            }
+        }
     }
 
     /** TODO O( 1 )
@@ -168,6 +183,18 @@ public class AvlTree<ValueType extends Comparable<? super ValueType> > {
      * @param node1 Node to become child of its left child
      */
     private void rotateLeft(BinaryNode<ValueType> node1){
+        if ((node1 == null) || ( node1.left == null))
+            return;
+        BinaryNode<ValueType> saveNode = node1.left;
+        if (node1.parent != null)
+        saveNode.parent = node1.parent;
+        else {
+            saveNode.parent = null;
+            root = saveNode;
+        }
+        node1.left = saveNode.right;
+        saveNode.right = node1;
+        node1.parent = saveNode;
     }
 
     /** TODO O( 1 )
@@ -175,6 +202,17 @@ public class AvlTree<ValueType extends Comparable<? super ValueType> > {
      * @param node1 Node to become child of its right child
      */
     private void rotateRight(BinaryNode<ValueType> node1){
+        if ((node1 == null) || ( node1.right == null))
+            return;
+        BinaryNode<ValueType> saveNode = node1.right;
+        if (node1.parent != null)
+            saveNode.parent = node1.parent;
+        else {
+            saveNode.parent = null;
+            root = saveNode;
+        }
+        node1.right = saveNode.left;
+        saveNode.left = node1;
     }
 
     /** TODO O( 1 )
@@ -214,7 +252,9 @@ public class AvlTree<ValueType extends Comparable<? super ValueType> > {
      * @return Number of level contained in subTree including subTree node level
      */
     private int getLevelCount(BinaryNode<ValueType> subTree){
-        return 0;
+        if (subTree == null)
+            return 0;
+        return Math.max(getLevelCount(subTree.right), getLevelCount(subTree.left)) + 1;
     }
 
     /** TODO O( log n )
@@ -236,6 +276,11 @@ public class AvlTree<ValueType extends Comparable<? super ValueType> > {
      * @param items List being modified to contain all values in the root tree in ascending order
      */
     private void infixOrder(BinaryNode<ValueType> currentNode, List<ValueType> items){
+        if (currentNode == null)
+            return;
+        infixOrder(currentNode.left, items);
+        items.add(currentNode.value);
+        infixOrder(currentNode.right, items);
     }
 
     /** TODO O( n )
@@ -244,6 +289,18 @@ public class AvlTree<ValueType extends Comparable<? super ValueType> > {
      * @param items List being modified to contain all values in the root tree in level order from top to bottom
      */
     private void levelOrder(ArrayDeque<BinaryNode<ValueType>> nodesToCheck, List<ValueType> items) {
+        items.add(nodesToCheck.peekFirst().value);
+        while (!nodesToCheck.isEmpty()) {
+            if (nodesToCheck.getFirst().left != null) {
+                items.add(nodesToCheck.getFirst().left.value);
+                nodesToCheck.add(nodesToCheck.getFirst().left);
+            }
+            if (nodesToCheck.getFirst().right != null) {
+                items.add(nodesToCheck.getFirst().right.value);
+                nodesToCheck.add(nodesToCheck.getFirst().right);
+            }
+            nodesToCheck.pop();
+        }
     }
     
     static class BinaryNode<ValueType> {
