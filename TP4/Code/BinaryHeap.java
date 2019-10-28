@@ -50,7 +50,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
         }
 
         array[ hole ]=x;
-	
+	    modifications++;
 	    return true;
     }
     
@@ -74,6 +74,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
             percolateDownMaxHeap(1,currentSize);
 
         currentSize--;
+        modifications++;
     	return save;
     }
     
@@ -153,10 +154,11 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
         int child = 0;
         AnyType tmp = array[hole];
 
-        for( ; hole * 2 <= size; hole = child) {
+        for( ; heapIndexing ? (hole * 2 <= size) : (hole * 2 + 1 < size); hole = child) {
             child = leftChild(hole, heapIndexing); // On prend le fils gauche
 
-            if ((child + 1 <= size) && (array[child].compareTo(array[child + 1]) > 0)) // fils droit existe et est inferieur au fils gauche
+            if ((heapIndexing ? (child + 1 <= size) : (child + 1 < size))
+                    && (array[child].compareTo(array[child + 1]) > 0)) // fils droit existe et est inferieur au fils gauche
                 child ++;
 
             if (array[child].compareTo(tmp) < 0)
@@ -187,10 +189,11 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
         int child = 0;
         AnyType tmp = array[hole];
 
-        for( ; hole * 2 <= size; hole = child) {
+        for( ; heapIndexing ? (hole * 2 <= size) : (hole * 2 + 1 < size); hole = child) {
             child = leftChild(hole, heapIndexing);  // On prend le fils gauche
 
-            if ((child + 1 <= size) && (array[child].compareTo(array[child + 1]) < 0)) // fils droit existe et est superieur au fils gauche
+            if ((heapIndexing ? (child + 1 <= size) : (child + 1 < size))
+                    && (array[child].compareTo(array[child + 1]) < 0)) // fils droit existe et est superieur au fils gauche
                 child ++;
 
             if (array[child].compareTo(tmp) > 0) {
@@ -206,12 +209,28 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
 				   void heapSort( AnyType[] a )
     {
 	//COMPLETEZ
+        for(int i = a.length/2; i>=0; i--){
+            percolateDownMaxHeap(a,i,a.length,false);
+        }
+        for(int i = a.length-1; i>0 ;i--){
+            swapReferences(a,0,i);
+            percolateDownMaxHeap(a,0,i,false);
+        }
+
     }
     
     public static <AnyType extends Comparable<? super AnyType>>
 				   void heapSortReverse( AnyType[] a )
     {
 	//COMPLETEZ
+        for(int i = a.length/2; i>=0; i--){
+            percolateDownMinHeap(a,i,a.length,false);
+        }
+        for(int i = a.length-1; i>0 ;i--){
+            swapReferences(a,0,i);
+            percolateDownMinHeap(a,0,i,false);
+        }
+
     }
     
     public String nonRecursivePrintFancyTree()
@@ -259,17 +278,25 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
     }
     
     private class HeapIterator implements Iterator {
-	
+
+        private int pos = 1;
+        private int nModifications = modifications;
+
         public boolean hasNext() {
             //COMPLETEZ
-                return false/**/;
+
+            return (pos < currentSize);
         }
 
         public Object next() throws NoSuchElementException,
                         ConcurrentModificationException,
                         UnsupportedOperationException {
-            //COMPLETEZ
-            return null/**/;
+            if (nModifications != modifications)
+                throw  new ConcurrentModificationException();
+            if(this.hasNext())
+                return array[pos++];
+
+            else throw new NoSuchElementException();
         }
 
         public void remove() {
