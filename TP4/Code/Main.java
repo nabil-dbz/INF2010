@@ -1,4 +1,5 @@
-import java.util.*; 
+import javax.swing.text.html.HTMLDocument;
+import java.util.*;
 
 
 public class Main 
@@ -20,10 +21,10 @@ public class Main
       // En insérant les éléments un a un
       for( i = 11, j = 0; j != numItems; i = ( i + 37 ), j++ )
       {
-	  heap.offer( i );
-	  items[ j ] = i;
+	     heap.offer( i );
+	     items[ j ] = i;
 
-	  i %=  numItems; 
+	     i %=  numItems;
       }
 
       // en construisant le monceau depuis le depart
@@ -70,6 +71,31 @@ public class Main
       /*
        * Ajouter appels pour repondre a la question
        **/
+      System.out.println("\n\nLa fonction poll:");
+      System.out.println("L'element maximal dans le monceau est :" + new BinaryHeap<Integer>(items,false).poll());
+      System.out.println("L'element minimal dans le monceau est :" + new BinaryHeap<Integer>(items,true).poll());
+
+      System.out.println("\n\nLes tests sur l'iterator:");
+      PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
+      for (Integer element : items)
+         queue.add(element);
+      heap = new BinaryHeap<Integer>(items,true);
+      System.out.println("\nAffichage du queue cree:");
+      Iterator itr = queue.iterator();
+      while (itr.hasNext())
+         System.out.print(itr.next() + ", ");
+      System.out.println("\nAffichage du heap cree:");
+      itr = heap.iterator();
+      while (itr.hasNext())
+         System.out.print(itr.next() + ", ");
+
+      System.out.println("\nTest sur la modification:");
+      Iterator it = heap.iterator();
+      while(it.hasNext()) {
+         if (it.next().equals(42))
+            heap.offer(10);
+      }
+
    }
 
    private static <AnyType> String printArray(AnyType[] a)

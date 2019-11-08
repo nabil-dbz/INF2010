@@ -232,14 +232,46 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
         }
 
     }
-    
+
+    public String concatenerPlusieursFois(String str, int nbFois) {
+        String outputString = "";
+        for (int i = 0; i < nbFois; i++)
+            outputString += str;
+        return outputString;
+    }
+
     public String nonRecursivePrintFancyTree()
     {
-	String outputString = "";
-	
-	//COMPLETEZ
+	    String outputString = "|";
+	    int prefix = 0;
+	    int index = 1;
+	    //COMPLETEZ
+        Stack<Integer> stack = new Stack();
+        stack.push(-1);
+        do {
+            prefix = (int)(Math.log(index) / Math.log(2));
 
-	return outputString;
+            outputString += concatenerPlusieursFois("   |", prefix);
+            outputString += "__";
+
+            if (index <= size()) {
+                outputString += array[index] + "\n";
+            }
+            else
+                outputString += "null\n";
+
+            if (index * 2 <= size()) {
+                stack.push(index);
+                index *= 2;
+            }
+            else {
+                index = stack.pop();
+                index = index * 2 + 1;
+            }
+
+        } while (!stack.empty());
+
+	    return outputString;
     }
     
     public String printFancyTree()
@@ -285,7 +317,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>> extends Abs
         public boolean hasNext() {
             //COMPLETEZ
 
-            return (pos < currentSize);
+            return (pos <= currentSize);
         }
 
         public Object next() throws NoSuchElementException,
