@@ -73,6 +73,8 @@ public class Node {
 
 	public void setArc(Edge edge) { this.arcs.add(edge); }
 
+	public List<Edge> getArcs() { return this.arcs; }
+
 	public int getNbArcs() { return this.arcs.size(); }
 
 }

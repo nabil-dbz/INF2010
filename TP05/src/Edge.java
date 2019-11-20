@@ -10,7 +10,7 @@ public class Edge {
 	public Edge(Node s, Node d, int dist) {
 		this.source = s;
 		this.destination = d;
-
+		this.distance = dist;
 		this.source.setArc(this);
 
 		// A completer
@@ -21,6 +21,7 @@ public class Edge {
 		this.source = s;
 		this.destination = d;
 		// A completer
+		//this.distance = s.
                 // La distance de Manhattan est la somme des valeurs absolues de la distance horizontale et de la distance verticale.
                 // https://en.wikipedia.org/wiki/Taxicab_geometry
 	}
@@ -40,6 +41,6 @@ public class Edge {
 	public int getDistance() {
 		return distance;
 	}
-	
+	public void setDistance(int distance) { this.distance = distance; }
 	
 }

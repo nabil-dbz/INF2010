@@ -59,7 +59,7 @@ public class Main {
 		
 		Dijkstra d = new Dijkstra(g);
 		
-		d.findPath(null, null/* Spécifiez les paramètres */);
+		d.findPath(listNodes.get(0), listNodes.get(4));
 		
 		d.showTable();
 
