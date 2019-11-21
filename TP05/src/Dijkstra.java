@@ -19,6 +19,20 @@ public class Dijkstra {
 		this.visitedNodes =  new HashMap<>();
 	}
 
+	private void addToPath(Node s, Node d, int iteration) {
+		int i = iteration;
+		boolean stop = this.dijkstraTable[i].containsKey(s);
+		while(!stop) {
+			path.pop();
+			i --;
+			stop = this.dijkstraTable[i].containsKey(s);
+		}
+		if (!path.peek().getDestination().equals(s))
+			addToPath(path.peek().getDestination(), s, i - 1);
+		path.push(this.dijkstraTable[iteration + 1].get(d));
+
+	}
+
 	public void findPath(Node s, Node d) {
 
 		dijkstraTable = new HashMap[graph.getNodes().size()];
@@ -29,7 +43,7 @@ public class Dijkstra {
 		this.dijkstraTable[0] = new HashMap<Node, Edge>();
 		dijkstraTable[s.getId()].put(s, new Edge(s, s));
 		visitedNodes.put(s.getId(), s);
-
+		path.push(new Edge(s, s));
 		while(path.empty() || !path.peek().getDestination().equals(d)) {
 			this.dijkstraTable[i] = new HashMap<Node, Edge>(this.dijkstraTable[i-1]);
 			this.dijkstraTable[i].remove(s);
@@ -38,11 +52,12 @@ public class Dijkstra {
 				if(lastEdgeSameDestination == null || lastEdgeSameDestination.getDistance() > edg.getDistance() + path.peek().getDistance())
 					if (!visitedNodes.containsValue(edg.getDestination())) {
 						this.dijkstraTable[i].put(edg.getDestination(), edg);
-						if (!path.empty()) this.dijkstraTable[i].get(edg.getDestination()).setDistance(edg.getDistance() + path.peek().getDistance());
+						if (!path.empty())
+							this.dijkstraTable[i].get(edg.getDestination()).setDistance(edg.getDistance() + path.peek().getDistance());
 					}
 			}
 			Node min = getMinimum(this.dijkstraTable[i]);
-			path.push(dijkstraTable[i].get(min));
+			addToPath(this.dijkstraTable[i].get(min).getSource(), min, i - 1);
 			visitedNodes.put(min.getId(), min);
 			s = min;
 			i++;
@@ -70,12 +85,26 @@ public class Dijkstra {
 	}
 	
 	public String printShortPath(Node source, Node destination) {
-		// A completer
-		return null;
+		//String outputStr =
+		if (path.empty() || path.peek().getDestination().equals(source))
+			return (path.peek().getDestination().getName());
+		Edge lastEdge = path.pop();
+		return (printShortPath(source, path.peek().getDestination()) +
+				" -> " + lastEdge.getDestination().getName());
 	}
 
 	public void showTable() {
-		// A completer
-		
+		for (int i = 0; i < this.dijkstraTable.length; i++) {
+			if (this.dijkstraTable[i] == null)
+				break;
+			System.out.print((i+1) + "|\t");
+			for (Node node : graph.getNodes()) {
+				if (this.dijkstraTable[i].containsKey(node))
+					System.out.print(this.dijkstraTable[i].get(node).getDistance() + node.getName() + "\t");
+				else
+					System.out.print("." + "\t");
+			}
+			System.out.println();
+		}
 	}
 }
