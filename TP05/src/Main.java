@@ -47,23 +47,25 @@ public class Main {
 		g.setEdges(listEdges);
 
 		// Affichage du graphe
+		System.out.println("\nAffichage du graphe:");
 		for (Node node : g.getNodes()) {
 			for (int i = 0; i < node.getNbArcs(); i++) {
 				System.out.print(node.getArc(i).getSource().getName() + " -> ");
 				System.out.println(node.getArc(i).getDestination().getName());
 			}
 		}
-		System.out.println();
 
 		// Partie 2: A completer : Implémentation de l’algorithme Dijkstra
 		
 		Dijkstra d = new Dijkstra(g);
 		
-		d.findPath(listNodes.get(0), listNodes.get(6));
-		
+		d.findPath(listNodes.get(0), listNodes.get(5));
+
+		System.out.println("\nLa table de Dijkstra:");
 		d.showTable();
 
 		// Partie 3 : Afficher le chemin le plus court
+		System.out.println("\nLe chemin le plus court:");
 		System.out.println(d.printShortPath(listNodes.get(0), listNodes.get(6)));
 	
 	}

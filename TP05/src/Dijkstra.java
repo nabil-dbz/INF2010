@@ -20,6 +20,8 @@ public class Dijkstra {
 	}
 
 	private void addToPath(Node s, Node d, int iteration) {
+		if ((s == null) || (d == null))
+			return;
 		int i = iteration;
 		boolean stop = this.dijkstraTable[i].containsKey(s);
 		while(!stop) {
@@ -39,7 +41,6 @@ public class Dijkstra {
 		path = new Stack<Edge>();
 
 		int i = 1;
-
 		this.dijkstraTable[0] = new HashMap<Node, Edge>();
 		dijkstraTable[s.getId()].put(s, new Edge(s, s));
 		visitedNodes.put(s.getId(), s);
@@ -85,8 +86,9 @@ public class Dijkstra {
 	}
 	
 	public String printShortPath(Node source, Node destination) {
-		//String outputStr =
-		if (path.empty() || path.peek().getDestination().equals(source))
+		if (path.empty())
+			return "";
+		if (path.peek().getDestination().equals(source))
 			return (path.peek().getDestination().getName());
 		Edge lastEdge = path.pop();
 		return (printShortPath(source, path.peek().getDestination()) +
